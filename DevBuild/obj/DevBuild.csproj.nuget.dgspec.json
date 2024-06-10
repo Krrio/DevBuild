@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Kacper\\Desktop\\KBP\\DevBuild\\DevBuild\\DevBuild.csproj": {}
+    "C:\\Users\\Kacper\\Documents\\DevBuild\\DevBuild\\DevBuild.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Kacper\\Desktop\\KBP\\DevBuild\\DevBuild\\DevBuild.csproj": {
+    "C:\\Users\\Kacper\\Documents\\DevBuild\\DevBuild\\DevBuild.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kacper\\Desktop\\KBP\\DevBuild\\DevBuild\\DevBuild.csproj",
+        "projectUniqueName": "C:\\Users\\Kacper\\Documents\\DevBuild\\DevBuild\\DevBuild.csproj",
         "projectName": "DevBuild",
-        "projectPath": "C:\\Users\\Kacper\\Desktop\\KBP\\DevBuild\\DevBuild\\DevBuild.csproj",
+        "projectPath": "C:\\Users\\Kacper\\Documents\\DevBuild\\DevBuild\\DevBuild.csproj",
         "packagesPath": "C:\\Users\\Kacper\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kacper\\Desktop\\KBP\\DevBuild\\DevBuild\\obj\\",
+        "outputPath": "C:\\Users\\Kacper\\Documents\\DevBuild\\DevBuild\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
