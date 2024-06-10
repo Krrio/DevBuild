@@ -13,4 +13,9 @@ namespace DevBuild.Controllers
             return View();
         }
     }
+        public IActionResult TextController()
+        {
+            return View();
+        }
+    }
 }
