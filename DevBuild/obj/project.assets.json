@@ -8,24 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Kacper\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\piotr\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Kacper\\Documents\\DevBuild\\DevBuild\\DevBuild.csproj",
+      "projectUniqueName": "C:\\Users\\piotr\\OneDrive\\Dokumenty\\DevBuild\\DevBuild\\DevBuild.csproj",
       "projectName": "DevBuild",
-      "projectPath": "C:\\Users\\Kacper\\Documents\\DevBuild\\DevBuild\\DevBuild.csproj",
-      "packagesPath": "C:\\Users\\Kacper\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Kacper\\Documents\\DevBuild\\DevBuild\\obj\\",
+      "projectPath": "C:\\Users\\piotr\\OneDrive\\Dokumenty\\DevBuild\\DevBuild\\DevBuild.csproj",
+      "packagesPath": "C:\\Users\\piotr\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\piotr\\OneDrive\\Dokumenty\\DevBuild\\DevBuild\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Kacper\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\piotr\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -33,7 +28,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -46,11 +40,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -75,7 +64,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
