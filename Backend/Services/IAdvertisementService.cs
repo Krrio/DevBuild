@@ -5,8 +5,8 @@ namespace DevBuild.Backend.Services
 {
     public interface IAdvertisementService : IServiceBase<Advertisement>
     {
-        Task<OperationResult<dynamic>> GetAllAdvertisements();
-        Task<OperationResult<dynamic>> GetAdvertisementById(int id);
-        Task<OperationResult<dynamic>> AddAdvertisement(Advertisement advertisement);
+        Task<List<Advertisement>> GetAllAdvertisementsAsync();
+        Task<Advertisement?> GetAdvertisementByIdAsync(int id);
+        Task<Advertisement> AddAdvertisementAsync(Advertisement advertisement);
     }
 }

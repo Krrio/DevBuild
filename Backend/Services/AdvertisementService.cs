@@ -67,9 +67,52 @@ namespace DevBuild.Backend.Services
                 }
             };
         }
-        public async Task<Advertisement> GetAllAdvertisementsAsync()
+        public async Task<List<Advertisement>> GetAllAdvertisementsAsync()
         {
-            
+            return await Task.FromResult(_advertisements);
+        }
+        public async Task<Advertisement?> GetAdvertisementByIdAsync(int id)
+        {
+            var advertisement = _advertisements.FirstOrDefault(a => a.Id == id);
+            if (advertisement == null)
+            {
+                return null;
+            }
+            return await Task.FromResult(advertisement);
+        }
+        public async Task<Advertisement> AddAdvertisementAsync(Advertisement advertisement)
+        {
+            advertisement.Id = _advertisements.Max(a => a.Id) + 1;
+            _advertisements.Add(advertisement);
+            return await Task.FromResult(advertisement);
+        }
+        public async Task<IQueryable<Advertisement>> GetMultipleAsync()
+        {
+            return await Task.FromResult(_advertisements.AsQueryable());
+        }
+        public async Task<Advertisement?> GetAsync(int id)
+        {
+            var advertisement = _advertisements.FirstOrDefault(a => a.Id == id);
+            return await Task.FromResult(advertisement);
+        }
+        public async Task<Advertisement> SaveAsync(Advertisement item)
+        {
+            var advertisement = _advertisements.FirstOrDefault(a => a.Id == item.Id);
+            if(advertisement != null)
+            {
+                _advertisements.Remove(advertisement);
+            }
+            _advertisements.Add(item);
+            return await Task.FromResult(item);
+        }
+        public async Task DeleteAsync(int id)
+        {
+            var advertisement = _advertisements.FirstOrDefault(a => a.Id == id);
+            if(advertisement != null)
+            {
+                _advertisements.Remove(advertisement);
+            }
+            await Task.CompletedTask;
         }
     }
 }
