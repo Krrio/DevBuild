@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Backend\Controllers\" />
+    <Folder Include="Backend\Models\" />
+    <Folder Include="Backend\Repositories\" />
+    <Folder Include="Backend\Services\" />
     <Folder Include="Frontend\" />
   </ItemGroup>
 
