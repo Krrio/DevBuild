@@ -1,0 +1,6 @@
+@DevBuild_HostAddress = http://localhost:5251
+
+GET {{DevBuild_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
