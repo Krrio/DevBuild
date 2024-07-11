@@ -3,7 +3,7 @@ using DevBuild.Backend.Models.enums;
 
 namespace DevBuild.Backend.Models
 {
-    public class Advertisement
+    public class Advertisement 
     {
         public int Id { get; set; }
         public string Title { get; set; }
