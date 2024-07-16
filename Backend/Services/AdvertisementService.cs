@@ -80,11 +80,24 @@ namespace DevBuild.Backend.Services
             }
             return await Task.FromResult(advertisement);
         }
+
         public async Task<Advertisement> AddAdvertisementAsync(Advertisement advertisement)
         {
-            advertisement.Id = _advertisements.Max(a => a.Id) + 1;
-            _advertisements.Add(advertisement);
-            return await Task.FromResult(advertisement);
+            var ad = new Advertisement()
+            {
+                Id = _advertisements.Max(a => a.Id) + 1,
+                Title = advertisement.Title,
+                Description = advertisement.Description,
+                Price = advertisement.Price,
+                Measurement = advertisement.Measurement,
+                CompletionState = advertisement.CompletionState,
+                BuildingType = advertisement.BuildingType,
+                Photo = advertisement.Photo,
+                ContactNumber = advertisement.ContactNumber,
+                ContactEmail = advertisement.ContactEmail
+            };
+            _advertisements.Add(ad);
+            return await Task.FromResult(ad);
         }
         public async Task<IQueryable<Advertisement>> GetMultipleAsync()
         {
@@ -95,7 +108,7 @@ namespace DevBuild.Backend.Services
             var advertisement = _advertisements.FirstOrDefault(a => a.Id == id);
             return await Task.FromResult(advertisement);
         }
-        public async Task<Advertisement> SaveAsync(Advertisement item)
+       public async Task<Advertisement> EditAsync(Advertisement item)
         {
             var advertisement = _advertisements.FirstOrDefault(a => a.Id == item.Id);
             if(advertisement != null)

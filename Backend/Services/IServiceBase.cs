@@ -4,7 +4,7 @@
     {
         Task<IQueryable<T>> GetMultipleAsync();
         Task<T?> GetAsync(int id);
-        Task<T> SaveAsync(T item);
+        Task<T> EditAsync(T item);
         Task DeleteAsync(int id);
     }
 }
