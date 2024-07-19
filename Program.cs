@@ -1,4 +1,6 @@
 
+using DevBuild.Backend.Services;
+
 namespace DevBuild
 {
     public class Program
@@ -13,6 +15,7 @@ namespace DevBuild
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddSingleton<IAdvertisementService, AdvertisementService>();
 
             var app = builder.Build();
 
