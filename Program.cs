@@ -18,6 +18,17 @@ namespace DevBuild
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            // Add CORS policy
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000") 
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
+
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
@@ -36,7 +47,7 @@ namespace DevBuild
 
             app.UseAuthorization();
 
-
+            app.UseCors();
             app.MapControllers();
 
             app.Run();
