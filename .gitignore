@@ -39,6 +39,11 @@ ScaffoldingReadMe.txt
 
 # Visual Studio 2022
 .vs/
+*.suo
+*.user
+*.rsuser
+*.userosscache
+*.sln.docstates
 
 # Windows image file caches
 Thumbs.db
