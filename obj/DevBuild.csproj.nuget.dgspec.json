@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\klusb\\Desktop\\DevBuild\\DevBuild\\DevBuild.csproj": {}
+    "c:\\Users\\Kacper\\Desktop\\DevBuild\\DevBuild\\DevBuild.csproj": {}
   },
   "projects": {
-    "C:\\Users\\klusb\\Desktop\\DevBuild\\DevBuild\\DevBuild.csproj": {
+    "c:\\Users\\Kacper\\Desktop\\DevBuild\\DevBuild\\DevBuild.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\klusb\\Desktop\\DevBuild\\DevBuild\\DevBuild.csproj",
+        "projectUniqueName": "c:\\Users\\Kacper\\Desktop\\DevBuild\\DevBuild\\DevBuild.csproj",
         "projectName": "DevBuild",
-        "projectPath": "C:\\Users\\klusb\\Desktop\\DevBuild\\DevBuild\\DevBuild.csproj",
-        "packagesPath": "C:\\Users\\klusb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\klusb\\Desktop\\DevBuild\\DevBuild\\obj\\",
+        "projectPath": "c:\\Users\\Kacper\\Desktop\\DevBuild\\DevBuild\\DevBuild.csproj",
+        "packagesPath": "C:\\Users\\Kacper\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\Kacper\\Desktop\\DevBuild\\DevBuild\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\klusb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Kacper\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -88,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
