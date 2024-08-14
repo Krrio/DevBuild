@@ -1,32 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Kacper\\Desktop\\DevBuild\\DevBuild\\DevBuild.csproj": {}
+    "/Users/kacperjozwik/Desktop/developerBuild/DevBuild/DevBuild.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Kacper\\Desktop\\DevBuild\\DevBuild\\DevBuild.csproj": {
+    "/Users/kacperjozwik/Desktop/developerBuild/DevBuild/DevBuild.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Kacper\\Desktop\\DevBuild\\DevBuild\\DevBuild.csproj",
+        "projectUniqueName": "/Users/kacperjozwik/Desktop/developerBuild/DevBuild/DevBuild.csproj",
         "projectName": "DevBuild",
-        "projectPath": "c:\\Users\\Kacper\\Desktop\\DevBuild\\DevBuild\\DevBuild.csproj",
-        "packagesPath": "C:\\Users\\Kacper\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Kacper\\Desktop\\DevBuild\\DevBuild\\obj\\",
+        "projectPath": "/Users/kacperjozwik/Desktop/developerBuild/DevBuild/DevBuild.csproj",
+        "packagesPath": "/Users/kacperjozwik/.nuget/packages/",
+        "outputPath": "/Users/kacperjozwik/Desktop/developerBuild/DevBuild/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Kacper\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/kacperjozwik/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -88,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

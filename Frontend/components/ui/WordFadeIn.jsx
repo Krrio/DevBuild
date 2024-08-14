@@ -16,9 +16,9 @@ const WordFadeIn = ({
   },
   className,
 }) => {
-  const _words = words.split(/(<br\/>)/).map((word, index) => ({
-    text: word,
-    key: `${word}-${index}`,
+  const _words = words.map((word, index) => ({
+    ...word,
+    key: `${word.text}-${index}`,
   }));
 
   return (
@@ -34,7 +34,12 @@ const WordFadeIn = ({
         word.text === "<br/>" ? (
           <br key={i} />
         ) : (
-          <motion.span key={word.key} custom={i} variants={variants}>
+          <motion.span
+            key={word.key}
+            custom={i}
+            variants={variants}
+            className={cn(word.className)}
+          >
             {word.text}{" "}
           </motion.span>
         )

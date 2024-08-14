@@ -1,51 +1,40 @@
-"use client";
-
 import { AnimatePresence, motion, MotionConfig } from "framer-motion";
 import { useTheme } from "next-themes";
 import { useEffect, useMemo, useRef, useState } from "react";
-import Hero from "./Hero";
 import { HeroImages, NavLinks } from "@/constants";
+import { ArrowRight } from "lucide-react"; // Import arrow icon from lucide-react
 
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetDescription,
-  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"
+} from "@/components/ui/sheet";
 
 const logoImage = HeroImages.find(hero => hero.id === 'hero-2').imgUrl;
 
-export function useScrollY(containerRef) {
+export function useScrollY() {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (containerRef.current) {
-        setScrollY(containerRef.current.scrollTop);
-      }
+      setScrollY(window.scrollY);
     };
 
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener("scroll", handleScroll);
-    }
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      if (container) {
-        container.removeEventListener("scroll", handleScroll);
-      }
+      window.removeEventListener("scroll", handleScroll);
     };
-  }, [containerRef]);
+  }, []);
 
   return scrollY;
 }
 
-export function StickyHeader({ containerRef }) {
-  const scrollY = useScrollY(containerRef);
+export function StickyHeader() {
+  const scrollY = useScrollY();
   const stickyNavRef = useRef(null);
   const { theme } = useTheme();
   const [active, setActive] = useState(false);
@@ -53,7 +42,10 @@ export function StickyHeader({ containerRef }) {
   const navLinks = useMemo(() => NavLinks, []);
 
   return (
-    <header ref={stickyNavRef} className="sticky top-0 z-50 px-10 py-7 xl:px-0">
+    <header
+      ref={stickyNavRef}
+      className={`sticky top-0 z-50 px-10 py-7 xl:px-0 transition-all duration-300`}
+    >
       <nav className="relative mx-auto flex items-center justify-between max-w-2xl">
         <motion.img
           className="h-20 w-20 object-contain"
@@ -123,9 +115,9 @@ export function StickyHeader({ containerRef }) {
                     <li>
                       <a
                         href="#"
-                        className="relative inline-flex w-fit items-center justify-center gap-x-1.5 overflow-hidden rounded-full bg-primary px-3 py-1.5 text-primary-foreground outline-none "
+                        className="bg-[#10B981] relative inline-flex w-fit items-center justify-center gap-x-1.5 overflow-hidden rounded-full bg-primary px-3 py-1.5 text-primary-foreground outline-none "
                       >
-                       Get Started
+                        Add
                       </a>
                     </li>
                   </motion.ul>
@@ -143,75 +135,102 @@ export function StickyHeader({ containerRef }) {
           }}
           transition={{ duration: 0.15 }}
         >
-          <button>Get Started</button>
+          <button className="bg-[#10B981] relative inline-flex w-fit items-center justify-center gap-x-1.5 overflow-hidden rounded-full bg-primary px-3 py-1.5 text-primary-foreground outline-none ">
+            Login
+          </button>
         </motion.div>
-        <MotionConfig transition={{ duration: 0.3, ease: "easeInOut" }}>
-          <motion.button
-            onClick={() => setActive((prev) => !prev)}
-            animate={active ? "open" : "close"}
-            className="relative flex h-8 w-8 items-center justify-center rounded-md md:hidden"
-          >
-            <motion.span
-              style={{ left: "50%", top: "35%", x: "-50%", y: "-50%" }}
-              className="absolute h-0.5 w-5 bg-black dark:bg-white"
-              variants={{
-                open: {
-                  rotate: ["0deg", "0deg", "45deg"],
-                  top: ["35%", "50%", "50%"],
-                },
-                close: {
-                  rotate: ["45deg", "0deg", "0deg"],
-                  top: ["50%", "50%", "35%"],
-                },
-              }}
-              transition={{ duration: 0.3 }}
-            ></motion.span>
-            <motion.span
-              style={{ left: "50%", top: "50%", x: "-50%", y: "-50%" }}
-              className="absolute h-0.5 w-5 bg-black dark:bg-white"
-              variants={{
-                open: {
-                  opacity: 0,
-                },
-                close: {
-                  opacity: 1,
-                },
-              }}
-            ></motion.span>
-            <motion.span
-              style={{ left: "50%", bottom: "30%", x: "-50%", y: "-50%" }}
-              className="absolute h-0.5 w-5 bg-black dark:bg-white"
-              variants={{
-                open: {
-                  rotate: ["0deg", "0deg", "-45deg"],
-                  top: ["65%", "50%", "50%"],
-                },
-                close: {
-                  rotate: ["-45deg", "0deg", "0deg"],
-                  top: ["50%", "50%", "65%"],
-                },
-              }}
-              transition={{ duration: 0.3 }}
-            ></motion.span>
-          </motion.button>
-        </MotionConfig>
+
+        {/* Sheet with hamburger menu */}
+        <Sheet>
+          <SheetTrigger asChild>
+            <motion.button
+              onClick={() => setActive((prev) => !prev)}
+              animate={active ? "open" : "close"}
+              className="relative flex h-8 w-8 items-center justify-center rounded-md md:hidden"
+            >
+              <motion.span
+                style={{ left: "50%", top: "35%", x: "-50%", y: "-50%" }}
+                className="absolute h-0.5 w-5 bg-black dark:bg-white"
+                variants={{
+                  open: {
+                    rotate: ["0deg", "0deg", "45deg"],
+                    top: ["35%", "50%", "50%"],
+                  },
+                  close: {
+                    rotate: ["45deg", "0deg", "0deg"],
+                    top: ["50%", "50%", "35%"],
+                  },
+                }}
+                transition={{ duration: 0.3 }}
+              ></motion.span>
+              <motion.span
+                style={{ left: "50%", top: "50%", x: "-50%", y: "-50%" }}
+                className="absolute h-0.5 w-5 bg-black dark:bg-white"
+                variants={{
+                  open: {
+                    opacity: 0,
+                  },
+                  close: {
+                    opacity: 1,
+                  },
+                }}
+              ></motion.span>
+              <motion.span
+                style={{ left: "50%", bottom: "30%", x: "-50%", y: "-50%" }}
+                className="absolute h-0.5 w-5 bg-black dark:bg-white"
+                variants={{
+                  open: {
+                    rotate: ["0deg", "0deg", "-45deg"],
+                    top: ["65%", "50%", "50%"],
+                  },
+                  close: {
+                    rotate: ["-45deg", "0deg", "0deg"],
+                    top: ["50%", "50%", "65%"],
+                  },
+                }}
+                transition={{ duration: 0.3 }}
+              ></motion.span>
+            </motion.button>
+          </SheetTrigger>
+
+          <SheetContent side="right">
+            <SheetHeader>
+              <SheetTitle>Menu</SheetTitle>
+              <SheetDescription>
+                Navigate through the sections.
+              </SheetDescription>
+            </SheetHeader>
+            <ul className="flex flex-col gap-y-4 mt-6"> {/* Added margin-top */}
+              <AnimatePresence>
+                {navLinks.map((navLink, index) => (
+                  <motion.li
+                    key={navLink.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    transition={{
+                      duration: 0.3,
+                      delay: index * 0.1, // Delay between items
+                    }}
+                    className="flex items-center text-lg text-primary group"
+                  >
+                    <a href={navLink.link} className="flex items-center">
+                      {navLink.label}
+                      <motion.span
+                        className="ml-2"
+                        whileHover={{ x: 5 }} // Move arrow to the right on hover
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        <ArrowRight className="h-4 w-4 text-primary group-hover:text-primary-dark" />
+                      </motion.span>
+                    </a>
+                  </motion.li>
+                ))}
+              </AnimatePresence>
+            </ul>
+          </SheetContent>
+        </Sheet>
       </nav>
     </header>
   );
 }
-
-export function Header() {
-  const containerRef = useRef(null);
-
-  return (
-    <main
-      ref={containerRef}
-      className="h-[50vh] w-full overflow-y-auto"
-    >
-      <StickyHeader containerRef={containerRef} />
-      <Hero />
-    </main>
-  );
-}
-
-export default Header

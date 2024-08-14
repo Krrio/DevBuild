@@ -10,7 +10,18 @@ export const HeroImages = [
 ];
 
 export const NavLinks = [
-  { id: 1, label: "Home", link: "#" },
-  { id: 2, label: "About", link: "#about" },
-  { id: 3, label: "Sell", link: "#sell" },
+  { id: 1, label: "Home", link: "/" },
+  { id: 2, label: "About", link: "/about" },
+  { id: 3, label: "Sell", link: "/sell" },
 ]
+
+export const HeroSectionImages = [
+  {
+    id: 'hero-1',
+    imgUrl: '/images/hero-img.png',  
+  },
+];
+
+
+
+

@@ -1,12 +1,16 @@
-import Hero from "@/components/Hero";
-import Navbar from "@/components/Navbar";
+"use client"
 
+import HeroMain from "@/components/HeroMain";
+import { StickyHeader } from "@/components/Navbar";
 
-
-export default function Home() {
+export default function Page() {
   return (
     <>
-      <Navbar />
+      <StickyHeader />
+      <main className="overflow-hidden">
+        <HeroMain />
+        <HeroMain />
+      </main>
     </>
   );
 }
