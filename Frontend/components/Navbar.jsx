@@ -2,7 +2,8 @@ import { AnimatePresence, motion, MotionConfig } from "framer-motion";
 import { useTheme } from "next-themes";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { HeroImages, NavLinks } from "@/constants";
-import { ArrowRight } from "lucide-react"; // Import arrow icon from lucide-react
+import { ArrowRight } from "lucide-react"; 
+import { Separator } from "@/components/ui/separator";
 
 import {
   Sheet,
@@ -14,6 +15,8 @@ import {
 } from "@/components/ui/sheet";
 
 const logoImage = HeroImages.find(hero => hero.id === 'hero-2').imgUrl;
+
+const sideLogoImage = HeroImages.find(hero => hero.id === 'hero-3').imgUrl;
 
 export function useScrollY() {
   const [scrollY, setScrollY] = useState(0);
@@ -38,6 +41,7 @@ export function StickyHeader() {
   const stickyNavRef = useRef(null);
   const { theme } = useTheme();
   const [active, setActive] = useState(false);
+  const [selectedLink, setSelectedLink] = useState("/"); // Default selected link
 
   const navLinks = useMemo(() => NavLinks, []);
 
@@ -193,14 +197,9 @@ export function StickyHeader() {
             </motion.button>
           </SheetTrigger>
 
-          <SheetContent side="right">
-            <SheetHeader>
-              <SheetTitle>Menu</SheetTitle>
-              <SheetDescription>
-                Navigate through the sections.
-              </SheetDescription>
-            </SheetHeader>
-            <ul className="flex flex-col gap-y-4 mt-6"> {/* Added margin-top */}
+          <SheetContent side="right" className="flex flex-col h-full">
+            
+            <ul className="flex-grow flex flex-col items-center justify-center gap-y-4 mt-6">
               <AnimatePresence>
                 {navLinks.map((navLink, index) => (
                   <motion.li
@@ -210,24 +209,53 @@ export function StickyHeader() {
                     exit={{ opacity: 0, y: 20 }}
                     transition={{
                       duration: 0.3,
-                      delay: index * 0.1, // Delay between items
+                      delay: index * 0.1,
                     }}
-                    className="flex items-center text-lg text-primary group"
+                    className={`inline-flex items-center gap-x-2 px-4 py-2 w-auto text-lg 
+                    ${selectedLink === navLink.link 
+                        ? 'bg-green-200 text-white rounded-full'
+                        : 'text-black'
+                    }`}
                   >
-                    <a href={navLink.link} className="flex items-center">
+                    <a
+                      href={navLink.link}
+                      className="flex items-center"
+                      onClick={() => setSelectedLink(navLink.link)}
+                    >
+                      <img
+                        src={navLink.imgUrl}
+                        alt={`${navLink.label} icon`}
+                        className={`h-6 w-6 mr-2 ${
+                          selectedLink === navLink.link ? 'filter invert' : ''
+                        }`}
+                      />
                       {navLink.label}
-                      <motion.span
-                        className="ml-2"
-                        whileHover={{ x: 5 }} // Move arrow to the right on hover
-                        transition={{ type: "spring", stiffness: 300 }}
-                      >
-                        <ArrowRight className="h-4 w-4 text-primary group-hover:text-primary-dark" />
-                      </motion.span>
+                      {selectedLink !== navLink.link && (
+                        <motion.span
+                          className="ml-2"
+                          whileHover={{ x: 5 }}
+                          transition={{ type: "spring", stiffness: 300 }}
+                        >
+                          <ArrowRight className="h-4 w-4" />
+                        </motion.span>
+                      )}
                     </a>
                   </motion.li>
                 ))}
               </AnimatePresence>
             </ul>
+            <Separator className="w-full" /> 
+            <div className="flex items-center justify-between">
+              <motion.img
+                className="h-14 w-14 object-contain"
+                src={sideLogoImage}
+                alt="Side_Logo"
+              />
+              <div className="flex flex-col">
+                <span className="ml-3 text-black text-2xl font-bold">DevBuild</span>
+                <span className="ml-3 text-gray-200 text-[12px]">Devbuild © 2024</span>
+              </div>
+            </div>
           </SheetContent>
         </Sheet>
       </nav>
