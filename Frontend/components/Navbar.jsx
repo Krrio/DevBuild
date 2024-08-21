@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/sheet";
 
 const logoImage = HeroImages.find(hero => hero.id === 'hero-2').imgUrl;
-
 const sideLogoImage = HeroImages.find(hero => hero.id === 'hero-3').imgUrl;
 
 export function useScrollY() {
@@ -42,8 +41,23 @@ export function StickyHeader() {
   const { theme } = useTheme();
   const [active, setActive] = useState(false);
   const [selectedLink, setSelectedLink] = useState("/"); // Default selected link
+  const [hoveredLink, setHoveredLink] = useState({ left: 0, width: 0, opacity: 0 });
 
   const navLinks = useMemo(() => NavLinks, []);
+
+  const handleMouseEnter = (e) => {
+    const node = e.currentTarget;
+    const rect = node.getBoundingClientRect();
+    setHoveredLink({
+      left: node.offsetLeft,
+      width: rect.width,
+      opacity: 1,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredLink((prev) => ({ ...prev, opacity: 0 }));
+  };
 
   return (
     <header
@@ -81,15 +95,24 @@ export function StickyHeader() {
             className="flex h-12 w-auto items-center justify-center overflow-hidden rounded-full px-6 py-2.5 transition-all bg-background md:p-1.5 md:py-2"
           >
             <nav className="relative h-full items-center justify-between gap-x-3.5 md:flex">
-              <ul className="flex h-full flex-col justify-center gap-6 md:flex-row md:justify-start md:gap-0 lg:gap-1">
+              <ul
+                className="flex h-full flex-col justify-center gap-6 md:flex-row md:justify-start md:gap-0 lg:gap-1 relative"
+                onMouseLeave={handleMouseLeave}
+              >
                 {navLinks.map((navLink) => (
                   <li
                     key={navLink.id}
-                    className="flex items-center justify-center px-[0.75rem] py-[0.375rem]"
+                    className="flex items-center justify-center px-[0.75rem] py-[0.375rem] rounded-full relative z-10"
+                    onMouseEnter={handleMouseEnter}
                   >
                     <a href={navLink.link}>{navLink.label}</a>
                   </li>
                 ))}
+                <motion.li
+                  className="absolute -top-1 left-0 bottom-0 bg-gray-100 rounded-full z-0 py-5"
+                  animate={hoveredLink}
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                />
               </ul>
             </nav>
             <motion.div
@@ -119,7 +142,7 @@ export function StickyHeader() {
                     <li>
                       <a
                         href="#"
-                        className="bg-[#10B981] relative inline-flex w-fit items-center justify-center gap-x-1.5 overflow-hidden rounded-full bg-primary px-3 py-1.5 text-primary-foreground outline-none "
+                        className="bg-[#10B981] relative inline-flex w-fit items-center justify-center gap-x-1.5 overflow-hidden rounded-full px-3 py-1.5 text-primary-foreground outline-none "
                       >
                         Add
                       </a>
@@ -139,7 +162,7 @@ export function StickyHeader() {
           }}
           transition={{ duration: 0.15 }}
         >
-          <button className="bg-[#10B981] relative inline-flex w-fit items-center justify-center gap-x-1.5 overflow-hidden rounded-full bg-primary px-3 py-1.5 text-primary-foreground outline-none ">
+          <button className="bg-[#10B981] relative inline-flex w-fit items-center justify-center gap-x-1.5 overflow-hidden rounded-full px-3 py-2 text-primary-foreground outline-none ">
             Login
           </button>
         </motion.div>
@@ -198,7 +221,6 @@ export function StickyHeader() {
           </SheetTrigger>
 
           <SheetContent side="right" className="flex flex-col h-full">
-            
             <ul className="flex-grow flex flex-col items-center justify-center gap-y-4 mt-6">
               <AnimatePresence>
                 {navLinks.map((navLink, index) => (
