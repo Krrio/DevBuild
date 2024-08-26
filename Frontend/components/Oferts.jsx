@@ -1,20 +1,24 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Subheading from './ui/Subheading'
+import { textVariant } from '@/constants'
+import PropertyCarousel from './ui/VideoCarousel'
 
 const Oferts = () => {
   return (
-    <section className='container overflow-x-hidden'>
+    <section className='container overflow-hidden'>
       <Subheading text="Our Recommendation" />
-      <motion.h2
-        className="text-4xl font-bold text-blue-200 dark:text-white mt-2"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.15, duration: 0.5 }}
-        viewport={{ once: false }}
-      >
-        Featured House
-      </motion.h2>
+      <div className='overflow-hidden'>
+        <motion.h2
+          variants={textVariant(0.15)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false }}
+          className="text-4xl font-bold text-blue-200 dark:text-white mt-4"
+        >
+          Featured Houses
+        </motion.h2>
+      </div>
     </section>
   )
 }

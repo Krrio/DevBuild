@@ -317,4 +317,22 @@
   .date-picker {
     @apply overflow-hidden border-transparent w-full placeholder:text-dark-600  h-11 text-14-medium rounded-md px-3 outline-none !important;
   }
+
+  /* ===== Property Carousel ===== */
+  .property-carousel {
+    @apply flex gap-4;
+    will-change: transform; /* Zastosuj will-change bez @apply */
+  }
+
+  .property-item {
+    @apply min-w-[300px] bg-white rounded-lg overflow-hidden shadow-md text-center;
+  }
+
+  .property-image {
+    @apply w-full h-[200px] object-cover;
+  }
+
+  .property-info {
+    @apply p-4;
+  }
 }

@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { HeroImages, NavLinks } from "@/constants";
 import { ArrowRight } from "lucide-react"; 
 import { Separator } from "@/components/ui/separator";
+import { usePathname } from "next/navigation"; // Import usePathname
 
 import {
   Sheet,
@@ -40,7 +41,7 @@ export function StickyHeader() {
   const stickyNavRef = useRef(null);
   const { theme } = useTheme();
   const [active, setActive] = useState(false);
-  const [selectedLink, setSelectedLink] = useState("/"); // Default selected link
+  const pathname = usePathname(); // Get the current pathname
   const [hoveredLink, setHoveredLink] = useState({ left: 0, width: 0, opacity: 0 });
 
   const navLinks = useMemo(() => NavLinks, []);
@@ -102,7 +103,9 @@ export function StickyHeader() {
                 {navLinks.map((navLink) => (
                   <li
                     key={navLink.id}
-                    className="flex items-center justify-center px-[0.75rem] py-[0.375rem] rounded-full relative z-10"
+                    className={`flex items-center justify-center px-[0.75rem] py-[0.375rem] rounded-full relative z-10 ${
+                      pathname === navLink.link ? 'text-green-500' : ''
+                    }`}
                     onMouseEnter={handleMouseEnter}
                   >
                     <a href={navLink.link}>{navLink.label}</a>
@@ -172,7 +175,6 @@ export function StickyHeader() {
           <SheetTrigger asChild>
             <motion.button
               onClick={() => setActive((prev) => !prev)}
-              animate={active ? "open" : "close"}
               className="relative flex h-8 w-8 items-center justify-center rounded-md md:hidden"
             >
               <motion.span
@@ -234,7 +236,7 @@ export function StickyHeader() {
                       delay: index * 0.1,
                     }}
                     className={`inline-flex items-center gap-x-2 px-4 py-2 w-auto text-lg 
-                    ${selectedLink === navLink.link 
+                    ${pathname === navLink.link 
                         ? 'bg-green-200 text-white rounded-full'
                         : 'text-black'
                     }`}
@@ -242,17 +244,17 @@ export function StickyHeader() {
                     <a
                       href={navLink.link}
                       className="flex items-center"
-                      onClick={() => setSelectedLink(navLink.link)}
+                      onClick={() => setActive(false)}
                     >
                       <img
                         src={navLink.imgUrl}
                         alt={`${navLink.label} icon`}
                         className={`h-6 w-6 mr-2 ${
-                          selectedLink === navLink.link ? 'filter invert' : ''
+                          pathname === navLink.link ? 'filter invert' : ''
                         }`}
                       />
                       {navLink.label}
-                      {selectedLink !== navLink.link && (
+                      {pathname !== navLink.link && (
                         <motion.span
                           className="ml-2"
                           whileHover={{ x: 5 }}
