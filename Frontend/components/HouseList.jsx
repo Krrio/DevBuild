@@ -15,7 +15,10 @@ const HouseList = () => {
         setAdvertisements(response.data);
       })
       .catch((error) => {
-        console.error("There was an error fetching the advertisements!", error);
+        console.error(
+          "There was an error fetching the advertisements!",
+          error
+        );
       });
   }, []);
 
@@ -30,12 +33,18 @@ const HouseList = () => {
     }
   };
 
+  // Function to generate random minutes between 0 and 20
+  const getRandomMinutesText = () => {
+    const minutes = Math.floor(Math.random() * 21); // Generates a random number between 0 and 20
+    return minutes === 0 ? "Just now" : `${minutes} min ago`;
+  };
+
   return (
     <div>
       <AnimatedList delay={2000}>
         {advertisements.map((ad) => (
           <AnimatedListItem key={ad.id}>
-            <div className="relative advertisement-item flex items-center p-4 border border-gray-300 rounded-md shadow-sm mb-4">
+            <div className="relative advertisement-item flex items-center p-4 border border-gray-300 rounded-md shadow-sm mb-4 cursor-pointer">
               <div className="absolute -top-3 -right-3 bg-red-300 w-14 h-6 rounded-md">
                 <span className="flex items-center justify-center text-white text-[13px] font-bold mt-[2px]">
                   New
@@ -59,8 +68,13 @@ const HouseList = () => {
                 <h3 className="text-lg text-blue-200 font-bold">{ad.title}</h3>
                 <p className="text-blue-200">{ad.description}</p>
                 <p className="text-[#10B981] font-semibold mt-2">
-                  <span className="text-blue-200">Price:</span> {formatPrice(ad.price)}
+                  <span className="text-blue-200">Price:</span>{" "}
+                  {formatPrice(ad.price)}
                 </p>
+              </div>
+              {/* Adding the random minutes or "Just now" in the bottom right corner */}
+              <div className="absolute bottom-2 right-2 text-gray-500 text-sm">
+                {getRandomMinutesText()}
               </div>
             </div>
           </AnimatedListItem>

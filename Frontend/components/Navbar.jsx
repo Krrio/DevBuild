@@ -104,7 +104,7 @@ export function StickyHeader() {
                   <li
                     key={navLink.id}
                     className={`flex items-center justify-center px-[0.75rem] py-[0.375rem] rounded-full relative z-10 ${
-                      pathname === navLink.link ? 'text-green-500' : ''
+                      pathname === navLink.link ? 'text-green-200' : ''
                     }`}
                     onMouseEnter={handleMouseEnter}
                   >
