@@ -165,7 +165,7 @@ export function StickyHeader() {
           }}
           transition={{ duration: 0.15 }}
         >
-          <button className="bg-[#10B981] relative inline-flex w-fit items-center justify-center gap-x-1.5 overflow-hidden rounded-full px-3 py-2 text-primary-foreground outline-none ">
+          <button className="bg-[#10B981] relative inline-flex w-fit items-center justify-center gap-x-1.5 overflow-hidden rounded-full px-3 py-2 text-primary-foreground outline-none font-bold">
             Login
           </button>
         </motion.div>

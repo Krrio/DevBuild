@@ -42,3 +42,21 @@ export const textVariant = (delay) => ({
     },
   },
 });
+
+export const ListLabels = [
+  {
+    id: 'list-1',
+    imgUrl: '/icons/house.png',
+    color: 'bg-blue-500'  
+  },
+  {
+    id: 'list-2',
+    imgUrl: '/icons/wallet.png',
+    color: 'bg-green-500' 
+  },
+  {
+    id: 'list-3',
+    imgUrl: '/icons/fire.png',
+    color: 'bg-red-500'   
+  },
+];

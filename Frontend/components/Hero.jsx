@@ -48,7 +48,6 @@ const Hero = () => {
                 "relative flex h-[800px] w-full flex-col p-6 overflow-hidden rounded-lg border bg-background md:shadow-xl"
             )}
         >
-            <WordFadeIn words="Advertisements<br/>From Our Company" />
             <AnimatedList className="w-full py-10" delay={1000}>
                 {advertisements.map(ad => (
                     <AdvertisementItem key={ad.id} title={ad.title} description={ad.description} />
