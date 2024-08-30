@@ -35,7 +35,7 @@ const HouseList = () => {
 
   // Function to generate random minutes between 0 and 20
   const getRandomMinutesText = () => {
-    const minutes = Math.floor(Math.random() * 21); // Generates a random number between 0 and 20
+    const minutes = Math.floor(Math.random() * 59); // Generates a random number between 0 and 20
     return minutes === 0 ? "Just now" : `${minutes} min ago`;
   };
 
