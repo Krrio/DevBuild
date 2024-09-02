@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Subheading from './ui/Subheading'
 import { textVariant } from '@/constants'
-import { FaHome, FaBuilding, FaCity } from 'react-icons/fa'; 
+import { FaHome, FaBuilding, FaCity, FaHouseUser  } from 'react-icons/fa'; 
 import { useState } from 'react'
 import { AppleCardsCarouselDemo } from './ui/carouseltest';
 
@@ -31,7 +31,7 @@ const Oferts = () => {
           </motion.h2>
         </div>
 
-        <div className='sm:flex gap-5 mx-auto hidden'>
+        <div className='sm:flex gap-5 mx-auto my-2 hidden'>
         <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
@@ -50,12 +50,25 @@ const Oferts = () => {
             whileTap={{ scale: 0.9 }}
             transition={{ type: 'spring', stiffness: 300 }}
             className={`relative inline-flex w-[146px] items-center justify-center gap-x-1.5 overflow-hidden rounded-full px-3 py-2 outline-none ${
-              activeButton === 'Villa' ? 'bg-[#D1FAE5] text-[#10B981]' : 'bg-white text-[#888B97] border border-gray-300'
+              activeButton === 'Office' ? 'bg-[#D1FAE5] text-[#10B981]' : 'bg-white text-[#888B97] border border-gray-300'
             }`}
-            onClick={() => handleButtonClick('Villa')}
+            onClick={() => handleButtonClick('Office')}
           >
             <FaBuilding className="mr-2" />
-            Villa
+            Office
+          </motion.button>
+
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: 'spring', stiffness: 300 }}
+            className={`relative inline-flex w-[146px] items-center justify-center gap-x-1.5 overflow-hidden rounded-full px-3 py-2 outline-none ${
+              activeButton === 'Studio' ? 'bg-[#D1FAE5] text-[#10B981]' : 'bg-white text-[#888B97] border border-gray-300'
+            }`}
+            onClick={() => handleButtonClick('Studio')}
+          >
+            <FaHouseUser  className="mr-2" />
+            Studio
           </motion.button>
 
           <motion.button
@@ -72,8 +85,8 @@ const Oferts = () => {
           </motion.button>
         </div>
 
-        <div className='bg-transparent w-[300px] h-[50px] hidden lg:flex'>
-        </div>
+        {/* <div className='bg-transparent w-[100px] h-[50px] hidden lg:flex'>
+        </div> */}
       </div>
       <AppleCardsCarouselDemo />
     </section>
