@@ -3,6 +3,8 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
+import { FaFire, FaTag, FaStar } from 'react-icons/fa'; 
+
 
 export function AppleCardsCarouselDemo() {
   const [data, setData] = useState([]); 
@@ -24,7 +26,7 @@ export function AppleCardsCarouselDemo() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   }
 
   const cards = data.map((card, index) => (

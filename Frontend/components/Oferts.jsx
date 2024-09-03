@@ -31,7 +31,7 @@ const Oferts = () => {
           </motion.h2>
         </div>
 
-        <div className='sm:flex gap-5 mx-auto my-2 hidden'>
+        <div className='lg:flex gap-5 mx-auto my-2 hidden'>
         <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}

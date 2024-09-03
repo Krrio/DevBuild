@@ -15,8 +15,7 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useOutsideClick } from "@/hooks/use-outside-click";
-import { FaFire, FaTag, FaStar } from 'react-icons/fa'; 
-
+import { FaFire, FaTag, FaStar } from "react-icons/fa";
 
 export const CarouselContext = createContext({
   onCardClose: () => {},
@@ -24,9 +23,9 @@ export const CarouselContext = createContext({
 });
 
 const categories = [
-  { name: 'Popular', color: '#FEE2E2', icon: <FaFire />, textColor: "#EF4444" },
-  { name: 'Best Deals', color: '#D1FAE5', icon: <FaTag />, textColor: "#047857" },
-  { name: 'New Offer', color: '#DBEAFE', icon: <FaStar />, textColor: "#1D4ED8" },
+  { name: "Popular", color: "#FEE2E2", icon: <FaFire />, textColor: "#EF4444" },
+  { name: "Best Deals", color: "#D1FAE5", icon: <FaTag />, textColor: "#047857" },
+  { name: "New Offer", color: "#DBEAFE", icon: <FaStar />, textColor: "#1D4ED8" },
 ];
 
 const getRandomCategory = () => {
@@ -34,9 +33,9 @@ const getRandomCategory = () => {
 };
 
 export const Carousel = ({ items, initialScroll = 0 }) => {
-  const carouselRef = React.useRef(null);
-  const [canScrollLeft, setCanScrollLeft] = React.useState(false);
-  const [canScrollRight, setCanScrollRight] = React.useState(true);
+  const carouselRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -89,7 +88,8 @@ export const Carousel = ({ items, initialScroll = 0 }) => {
         <div
           className="flex w-full overflow-x-scroll overscroll-x-auto py-10 md:py-20 scroll-smooth [scrollbar-width:none]"
           ref={carouselRef}
-          onScroll={checkScrollability}>
+          onScroll={checkScrollability}
+        >
           <div
             className={cn(
               "absolute right-0 z-[1000] h-auto w-[5%] overflow-hidden bg-gradient-to-l"
@@ -104,25 +104,24 @@ export const Carousel = ({ items, initialScroll = 0 }) => {
           >
             {items.map((item, index) => (
               <motion.div
-                initial={{
-                  opacity: 0,
-                  y: 20,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    duration: 0.5,
-                    delay: 0.2 * index,
-                    ease: "easeOut",
-                    once: true,
-                  },
-                }}
-                key={"card" + index}
-                className="last:pr-[5%] md:last:pr-[33%] rounded-3xl cursor-default" 
-              >
-                {item}
-              </motion.div>
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                transition: {
+                  duration: 0.5,
+                  delay: 0.2 * index,
+                  ease: "easeOut",
+                }, // Fixed: Closed the curly brace for `transition`
+              }} // Fixed: Closed the curly brace for `animate`
+              key={"card" + index} // Moved `key` to the correct position
+              className="last:pr-[5%] md:last:pr-[33%] rounded-3xl cursor-default"
+            >
+              {item}
+            </motion.div>
             ))}
           </div>
         </div>
@@ -152,7 +151,8 @@ export const Card = ({ card, index, layout = false }) => {
   const containerRef = useRef(null);
   const { onCardClose, currentIndex } = useContext(CarouselContext);
 
-  const randomCategory = getRandomCategory()
+  // State to keep track of the assigned category
+  const [assignedCategory] = useState(() => getRandomCategory());
 
   useEffect(() => {
     function onKeyDown(event) {
@@ -178,9 +178,9 @@ export const Card = ({ card, index, layout = false }) => {
     onCardClose(index);
   };
 
-  const formattedPrice = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
+  const formattedPrice = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(card.price);
@@ -214,7 +214,7 @@ export const Card = ({ card, index, layout = false }) => {
                 layoutId={layout ? `category-${card.title}` : undefined}
                 className="text-base font-medium text-black dark:text-white"
               >
-                {card.category}
+                {assignedCategory.name}
               </motion.p>
               <motion.p
                 layoutId={layout ? `title-${card.title}` : undefined}
@@ -229,7 +229,7 @@ export const Card = ({ card, index, layout = false }) => {
       </AnimatePresence>
       <motion.div
         layoutId={layout ? `card-${card.title}` : undefined}
-        className="rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:h-[40rem] md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10 cursor-default" 
+        className="rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:h-[40rem] md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10 cursor-default"
       >
         <div className="relative w-full h-full">
           <BlurImage
@@ -240,10 +240,13 @@ export const Card = ({ card, index, layout = false }) => {
           />
           <div
             className={`absolute top-4 left-4 px-3 py-2 rounded-full z-20 flex items-center`}
-            style={{ backgroundColor: randomCategory.color, color: randomCategory.textColor }}
+            style={{
+              backgroundColor: assignedCategory.color,
+              color: assignedCategory.textColor,
+            }}
           >
-            {randomCategory.icon}
-            <span className="ml-2 font-medium">{randomCategory.name}</span>
+            {assignedCategory.icon}
+            <span className="ml-2 font-medium">{assignedCategory.name}</span>
           </div>
         </div>
       </motion.div>
@@ -255,23 +258,40 @@ export const Card = ({ card, index, layout = false }) => {
           {formattedPrice}
         </p>
       </div>
+      <div className="flex items-center mt-4">
+        <div className="relative w-10 h-10 mr-4">
+          <Image
+            src="/images/plp.jpg" 
+            alt="Seller"
+            layout="fill"
+            className="rounded-full object-cover"
+          />
+        </div>
+        <div>
+          <p className="text-md md:text-lg font-medium text-gray-700 dark:text-white">
+            John Doe
+          </p>
+          <p className="text-sm md:text-md text-gray-500 dark:text-gray-300"> 
+            Estate Agent 
+          </p>
+        </div>
+    </div>
+
+
+
     </>
   );
 };
 
-
-export const BlurImage = ({
-  height,
-  width,
-  src,
-  className,
-  alt,
-  ...rest
-}) => {
+export const BlurImage = ({ height, width, src, className, alt, ...rest }) => {
   const [isLoading, setLoading] = useState(true);
   return (
     <Image
-      className={cn("transition duration-300", isLoading ? "blur-sm" : "blur-0", className)}
+      className={cn(
+        "transition duration-300",
+        isLoading ? "blur-sm" : "blur-0",
+        className
+      )}
       onLoad={() => setLoading(false)}
       src={src}
       width={width}
